@@ -16,3 +16,5 @@ scratch/
 **/*.quarto_ipynb
 _site/
 /.luarc.json
+_freeze/
+.jupyter_cache/

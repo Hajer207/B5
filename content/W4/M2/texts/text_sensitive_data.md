@@ -1,4 +1,7 @@
-# Sensitive Data
+---
+title: "Sensitive Data"
+format: html
+---
 
 In certain data-sensitive contexts (for instance, private health records or political or financial data) sharing a report that includes a sample would violate privacy constraints.
 

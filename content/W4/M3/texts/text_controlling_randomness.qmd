@@ -1,4 +1,7 @@
-## Controlling Randomness
+---
+title: "Controlling Randomness"
+format: html
+---
 
 Machine learning algorithms rely heavily on randomness. It is used:
 

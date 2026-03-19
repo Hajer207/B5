@@ -1,8 +1,8 @@
 project:
   type: website
-  title: "AI Pros Bootcamp"
+  title: "Applied AI Bootcamp"
   preview: 
-    port: 4600
+    port: 4700
   output-dir: _site
 
 website:

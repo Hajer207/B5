@@ -15,11 +15,11 @@ The question is: how to evaluate the model's performance?
 
 **Metrics**: are used to evaluate the model's performance from a practical or business perspective. They are not used to "train" the model; rather, to judge it's performance and compare it against other models. Examples:
 
-- [**Regression Metrics**](../../M2/lessons/06_regression_metrics.ipynb) (where targets are **continuous**):
+- [**Regression Metrics**](../../M4/lessons/01_slides_regression_metrics.qmd) (where targets are **continuous**):
     - R-squared (default when you call `model.score()`) 
     - Mean Squared Error (MSE) - (also used as a loss function)
     - Mean Absolute Percentage Error (MAPE)
-- [**Classification Metrics**](../../M4/lessons/01_classification_metrics.ipynb) (where targets are **categorical**):
+- [**Classification Metrics**](../../M4/lessons/03_slides_classification_metrics.qmd) (where targets are **categorical**):
     - Accuracy (default when you call `model.score()`) 
     - Precision
     - Recall

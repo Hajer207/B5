@@ -2,18 +2,24 @@
 format: "html"
 ---
 
+## Schedule
+
+1. Python
+2. [Applied Data Science](W2/index.qmd)
+3. [Applied Machine Learning](W3/index.qmd)
+4. Applied Deep Learning
+5. [Agentic AI](W5/index.qmd)
+6. Fullstack Python Apps with Agentic Engineering
+
+[Click to access the Schedule](https://docs.google.com/spreadsheets/d/1I8qq_lphrymOCXXQTBf7ieL2SdGovz_wwqj93PLz2mQ/edit?usp=sharing)
+
 ## Pre-requisites
 
 - Python Basics. To prepare or refresh: [المقدمة البايثونية للبرمجة باللغة العربية](https://halgoz.quarto.pub/pythonia/)
 
+### Slides Tips
 
-## Topics
-
-
-## Schedule
-
-| Lesson | Description | Material | Assignments |
-| ------ | ----------- | -------- | ----------- |
-| 1      |             |          |             | 
-
-[Click to access the Schedule](https://docs.google.com/spreadsheets/d/1I8qq_lphrymOCXXQTBf7ieL2SdGovz_wwqj93PLz2mQ/edit?usp=sharing)
+- `Ctrl+click` to zoom
+- `Esc` to navigate the slides
+- `M` to navigate from the outline
+- `E` to view slides concatenated as one page
