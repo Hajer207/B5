@@ -38,13 +38,11 @@ Tentative schedule:
 
 ## Sessions and Break times
 
-- **Session 1**: 9:00 PM - 9:50 PM
+- **Session 1**: 9:00 PM - 10:30 PM
 - 10 minutes break
-- **Session 2**: 10:00 PM - 10:50 PM
-- 10 minutes break
-- **Session 3**: 11:00 PM - 12:00 PM
+- **Session 2**: 10:45 PM - 12:00 PM
 - Lunch break 12:00 - 1:00 PM
-- **Session 4 (Labs and Exercises)**: 1:00 - 3:00 PM
+- **Session 3 (Labs and Exercises)**: 1:00 - 3:00 PM
 
 ## Pedagogy
 
