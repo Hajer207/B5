@@ -79,7 +79,10 @@ Learning outcomes:
 14. Name at least 2 outlier-removal methods and explain how they work
 15. Given a distribution plot; name it (e.g., normal, uniform, or skewed to the right)
 
-Lesson: [Statistical Analysis](./M3/lessons/01_statistics.ipynb).
+Lessons:
+
+- [Lesson: Statistics](./M3/lessons/01_slides_statistics.qmd)
+- [Lab: Statistics](./M3/lessons/01_statistics.ipynb)
 
 ### M3-2: Statistical Visualization
 
@@ -108,8 +111,8 @@ Lessons and labs:
 
 Exercises:
 
-1. [Visualization Exercises](./M3/exercises/viz_exercises.ipynb) (4 questions)
-2. [EDA Penguins](./M3/exercises/eda_penguins_ex.ipynb) (7 questions)
+1. [EDA Penguins](./M3/exercises/eda_penguins_ex.ipynb) (7 questions)
+2. [Visualization Exercises](./M3/exercises/viz_exercises.ipynb) (4 questions)
 
 ## Module 4: Inferential Statistics
 
@@ -127,7 +130,11 @@ Learning outcomes:
 8. Given a hypothesis in statistical terms, explain it in layman terms
 9. Recognize when the test is two-sided or one-sided (and in which direction)
 
-Lab: [Hypothesis Testing](./M4/lessons/01_hypothesis_testing.ipynb).
+Lessons:
+
+- [Lesson: Hypothesis Testing](./M4/lessons/01_slides_hypothesis_testing.qmd)
+- [Lab: Hypothesis Testing](./M4/lessons/01_hypothesis_testing.ipynb)
+
 
 ### M4-2: Association and Correlation
 
@@ -144,10 +151,11 @@ Learning outcomes:
 9. Explain the phrase "correlation does not imply causation" and give at least 1 example of your own
 10. Explain what a *Confounding Variable* is
 
-Labs:
+Lessons:
 
-1. [Categorical Association](./M4/lessons/02_cat_association.ipynb)
-2. [Numerical Correlation](./M4/lessons/03_num_correlation.ipynb)
+- [Lesson: Correlation](./M4/lessons/03_slides_num_correlation.qmd)
+- [Lab 1: Categorical Association](./M4/lessons/02_cat_association.ipynb)
+- [Lab 2: Numerical Correlation](./M4/lessons/03_num_correlation.ipynb)
 
 Exercises:
 
