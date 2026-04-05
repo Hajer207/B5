@@ -3,6 +3,8 @@ title: "Transformers, what can they do?"
 format: html
 ---
 
+[Open in Colab](https://colab.research.google.com/github/huggingface/notebooks/blob/master/course/en/chapter1/section3.ipynb).
+
 In this section, we will look at what Transformer models can do and use our first tool from the 🤗 Transformers library: the `pipeline()` function.
 
 > 👀 See that <em>Open in Colab</em> button on the top right? Click on it to open a Google Colab notebook with all the code samples of this section. This button will be present in any section containing code examples.
@@ -364,6 +366,7 @@ One powerful application of Transformer models is their ability to combine and p
 3. Create a unified view of related information
 
 For example, you could build a system that:
+
 - Searches for information across databases in multiple modalities like text and image.
 - Combines results from different sources into a single coherent response. For example, from an audio file and text description.
 - Presents the most relevant information from a database of documents and metadata.

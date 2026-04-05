@@ -28,6 +28,7 @@ Optical Character Recognition (OCR) converts images of text into searchable, edi
   - Instantly extracting text from invoices, receipts, and tax forms to eliminate manual typing.
 3. **Live Translation:** Enabling apps to translate foreign street signs or menus by simply pointing a smartphone camera at them.
 
+Example: [QARI-OCR](https://huggingface.co/NAMAA-Space/Qari-OCR-v0.3-VL-2B-Instruct) Structural Arabic Document Understanding.
 
 ## Automatic Speech Recognition (ASR)
 
@@ -42,12 +43,13 @@ Convert spoken language into text or actionable commands.
 - **Dictation:** for people to speak their notes directly into text documents.
 - **Voice Assistants:** Powering smart devices (like Siri or Google Assistant) to answer questions, set reminders, and control smart homes.
 
+> Example: [NAMAA-Space/EgypTalk-ASR-v2](https://huggingface.co/NAMAA-Space/EgypTalk-ASR-v2) trained on over 200 hours of high-quality, manually curated audio data collected and prepared by the NAMAA team. It is built upon NVIDIA’s FastConformer Hybrid Large architecture and fine-tuned for Egyptian Arabic, enabling highly accurate transcription in casual, formal, and mixed dialect settings.
 
 ## Text to Speech (TTS)
 
 Convert text into speech.
 
-Example: [NAMAA Saudi Dialect TTS](https://huggingface.co/spaces/omarelshehy/NAMAA-Saudi-Voice).
+> Example: [NAMAA-Saudi-TTS](https://huggingface.co/spaces/omarelshehy/NAMAA-Saudi-Voice) refined to generate natural Saudi dialect speech, targeting everyday conversational usage rather than Modern Standard Arabic (MSA).
 
 ## Machine Translation (MT)
 
@@ -61,8 +63,31 @@ Automatically converting text from one language into another. This is a challeng
 - Translating **user manuals** for consumer
 - Translating **social media posts** for marketing
 
+> Example: [NAMAA-T5-Saudi2English](https://huggingface.co/NAMAA-Space/NAMAA-MT-Saudi2English) fine-tuned on Saudi dialectal data (Najdi, Hijazi, Southern, Northern, and Eastern varieties) built on top of mBERT-initialized T5 architecture and aims to improve translation quality for informal and region-specific Arabic commonly used across Saudi Arabia.
 
-## Information Retrieval
+### ASCAT: Arabic Scientific Corpus for Advanced Translation
+
+[ASCAT-Arabic-Scientific-Translation](https://huggingface.co/datasets/NAMAA-Space/ASCAT-Arabic-Scientific-Translation).
+
+- Domains: Physics, Mathematics, Computer Science, Quantum Mechanics, Artificial Intelligence
+- Size: 500 full scientific abstracts
+- Total English Tokens: 67,293
+- Total Arabic Tokens: 60,026
+- Arabic Vocabulary Size: 17,604 unique words
+
+## Spelling Correction
+
+[NAMAA-Space/SaudiSpell-AraT5](https://huggingface.co/NAMAA-Space/SaudiSpell-AraT5) Unlike generic Arabic correctors, this model is engineered to handle the specific orthographic and phonetic nuances of **Najdi**, **Hijazi**, and **Standard Saudi** dialects alongside Modern Standard Arabic (MSA). Trained on **3 Million sentences**.
+
+- Hijazi Example (Phonetic & Typos)
+  - Input: يا واد اشبك مستعجل كدا
+  - Expected: يا واد اشبك مستعجل كذا
+- Najdi Example (Space Stripping)
+  - Input: ياخي وراك مارديت
+  - Expected: يا أخي وراك ما رديت
+
+
+## Information Retrieval (IR)
 
 **Information Retrieval (IR)** is the process of finding relevant information from a collection of documents.
 
@@ -76,6 +101,12 @@ Automatically converting text from one language into another. This is a challeng
 
 <img src="https://mohammedkhalilia.com/project/wojood/featured_hu3c39113436d8415af0ad7d87aac657cd_252396_720x2500_fit_q75_h2_lanczos.webp">
 
+Example: [GLiNER](https://huggingface.co/NAMAA-Space/gliner_arabic-v2.1).
+
+Applications:
+
+- Building knowledge graphs for Arabic content.
+- Enhancing search and recommendation systems with entity-aware features.
 
 ## Summarization
 
@@ -108,89 +139,6 @@ Label: Spam.
 - **Fake accounts** (حسابات مزيفة)
 - **Inappropriate content** (محتوى غير لائق)
 
-## Semantic Textual Similarity (STS)
-
-**Semantic Textual Similarity (STS)** measures how closely two sentences match in meaning, regardless of the exact words used.
-[Semantic Textual Similarity (STS)](https://sbert.net/examples/sentence_transformer/training/sts/README.html) assigns a score between 0 and 1 on the similarity of two texts. Here are exampels from the [STSB Dataset](https://huggingface.co/datasets/sentence-transformers/stsb):
-
-| Sentence A | Sentence B | Score |
-| --- | --- | --- |
-| A plane is taking off. | An air plane is taking off. | 1 |
-| A man is playing a large flute. | A man is playing a flute. | 0.76 |
-| A man is spreading shreded cheese on a pizza. | A man is spreading shredded cheese on an uncooked pizza. | 0.76 |
-| Three men are playing chess. | Two men are playing chess. | 0.52 |
-| A man is playing the cello. | A man seated is playing the cello. | 0.85 |
-| Some men are fighting. | Two men are fighting. | 0.85 |
-| A man is smoking. | A man is skating. | 0.1 |
-| The man is playing the piano. | The man is playing the guitar. | 0.32 |
-| A man is playing on a guitar and singing. | A woman is playing an acoustic guitar and singing. | 0.44 |
-| A person is throwing a cat on to the ceiling. | A person throws a cat on the ceiling. | 1 |
-| The man hit the other man with a stick. | The man spanked the other man with a stick. | 0.84 |
-
-
-## Natural Language Inference (NLI)
-
-Given two sentence (premise and hypothesis), Natural Language Inference (NLI) is the task of deciding if the premise entails the hypothesis, if they are contradiction or if they are neutral.
-
-- **Entailment**: Hypothesis is definitely true given the premise.
-- **Contradiction**: Hypothesis is definitely false given the premise.
-- **Neutral**: Hypothesis may or may not be true given the premise.
-
-
-### NLI: General Knowledge
-
-Commonly used NLI dataset are [SNLI](https://huggingface.co/datasets/stanfordnlp/snli) and [MultiNLI](https://huggingface.co/datasets/nyu-mll/multi_nli) for general knowledge:
-
-| Premise | Hypothesis | Label |
-| --- | --- | --- |
-| Children smiling and waving at camera | They are smiling at their parents | neutral |
-| Children smiling and waving at camera | There are children present | entailment |
-| Children smiling and waving at camera | The kids are frowning | contradiction |
-
-
-### MedNLI: Medical Knowledge
-
-[MedNLI](https://jgc128.github.io/mednli/) dataset for medical knowledge:
-
-| Premise | Hypothesis | Label |
-| --- | --- | --- |
-| Labs were notable for Cr 1.7 (baseline 0.5 per old records) and lactate 2.4. | Patient has elevated Cr | entailment |
-| Labs were notable for Cr 1.7 (baseline 0.5 per old records) and lactate 2.4. | Patient has normal Cr | contradiction |
-| Labs were notable for Cr 1.7 (baseline 0.5 per old records) and lactate 2.4. | Patient has elevated BUN | neutral |
-
-
-### Email Application
-
-[Email Intent Classification Dataset](https://huggingface.co/datasets/aadilsayad/email-intent-classification):
-
-| Premise | Hypothesis | Label |
-| --- | --- | --- |
-| Can I send an email, please? | send | send |
-| I'd like to compose an email. | send | send |
-| I need to send an email. | send | send |
-| Could you help me write an email? | send | send |
-| Is it possible to send an email with you? | send | send |
-| Show me all my emails. | list | list |
-| Can you list my emails, please? | list | list |
-| Open my inbox. | list | list |
-| I want to see all my mail. | list | list |
-| Display my email messages. | list | list |
-| Delete this email, please. | trash | trash |
-| Can you get rid of this email? | trash | trash |
-| I want to remove this email. | trash | trash |
-| Please erase this email. | trash | trash |
-| Time to delete this one. | trash | trash |
-
-
-### Sales Application
-
-| Premise | Hypothesis | Label |
-| --- | --- | --- |
-| "Hello, I want to get me a Laptop how much does it cost?" | "BUY Laptop" | "BUY Laptop" |
-| "I am very frustrated with your service, and I wanna cancel right now!" | "CANCEL Subscription" | "CANCEL Subscription" |
-| "Here I bought this Keyboard, but it is not working. I want to get my money back!" | "REFUND Transaction" | "REFUND Transaction" |
-
-
 ## NLU & NLG
 
 **Natural Language Understanding (NLU)**: Extract meaning, intention, emotion, importance, and correlation between words/texts/speech.
@@ -205,7 +153,7 @@ Commonly used NLI dataset are [SNLI](https://huggingface.co/datasets/stanfordnl
 - Coding agents: mimics developer thoughts and actions (devs explicitly write down what their step-by-step thinking, commands, and actions)
 
 
-## Large Language Models
+## Large Language Models (LLMs)
 
 **Large Language Models (LLMs)** are a powerful subset of deep neural NLP models characterized by:
 
@@ -214,12 +162,11 @@ Commonly used NLI dataset are [SNLI](https://huggingface.co/datasets/stanfordnl
 3. ability to perform a wide range of language tasks
 
 
-## Vision-Language Models
+## Vision-Language Models (VLMs)
 
 **Vision-Language Models (VLMs)** are language models that can process and understand images in addition to text.
 
 Example: [QARI-OCR](https://huggingface.co/NAMAA-Space/Qari-OCR-v0.3-VL-2B-Instruct) Structural Arabic Document Understanding.
-
 
 ## Model Hub
 

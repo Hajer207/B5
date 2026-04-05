@@ -11,18 +11,17 @@ toc-depth: 2
      - [Three (3) Model Types](https://www.sbert.net/#what-next)
     - [Fine-tune Embedding Models](https://unsloth.ai/docs/basics/embedding-finetuning)
      - Example: [EmbeddingGemma (300M) with Sentence Transformers](https://colab.research.google.com/github/unslothai/notebooks/blob/main/nb/EmbeddingGemma_(300M).ipynb)
+
 - **LLMs**
-  - **Use Cases???**
-  - Building Applications: LangChain
-  - Selecting and Fine-tuning Models:
-    - Transformers (e.g., [Qari-OCR v2 using VLM | NAMAA](https://huggingface.co/NAMAA-Space))
-    - Unsloth
 - [Datasets](https://huggingface.co/docs/hub/en/datasets-overview)
   - how to get splits
   - the viewer and how to use it
   - how to convert to DataFrame
+
 - **Sharing demos** with [Gradio](https://www.gradio.app/guides/quickstart)
+
 - **Docker** (required by LabelStudio and UnslothStudio)
+
 - **Data Curation** with [LabelStudio](https://labelstud.io/guide) (alternative: [Argilla](https://huggingface.co/learn/llm-course/chapter10/1))
   1. First impression: [Template Gallery](https://labelstud.io/templates/)
   2. Setup: [Getting Started With Label Studio: A Step-By-Step Guide](https://labelstud.io/learn/getting-started-with-label-studio/) -- REQUIRES DOCKER
@@ -31,6 +30,13 @@ toc-depth: 2
     - HF → LS: Load datasets from Hugging Face into Label Studio for annotation
     - LS → HF: Export labeled data from Label Studio for model training
     - HF → LS: Connect Hugging Face models as ML backends for pre-annotations and active learning
+
+
+References:
+
+- [Official 🤗 Transformers Notebooks](https://huggingface.co/docs/transformers/notebooks)
+- [Official 🦥 Unsloth Notebooks](https://unsloth.ai/docs/get-started/unsloth-notebooks)
+- [Unsloth Studio](https://github.com/unslothai/unsloth): Run and train AI models with a unified local interface.
 
 Easy Computer Vision:
 
