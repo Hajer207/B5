@@ -62,6 +62,10 @@ pipeline(
 [{'answer': 'statue of liberty'}]
 ```
 
+## Other Tasks
+
+For more tasks examples, see [Transformers, what can they do? | LLM Course](https://huggingface.co/learn/llm-course/chapter1/3).
+
 ## Pipeline Parameters
 
 At a minimum, [Pipeline](/docs/transformers/v5.5.0/en/main_classes/pipelines#transformers.Pipeline) only requires: `task` and  `model`. We can configure it to:
@@ -171,7 +175,7 @@ pipeline("the secret to baking a really good cake is ")
 
 [Pipeline](/docs/transformers/v5.5.0/en/main_classes/pipelines#transformers.Pipeline) supports **half-precision weights** (`torch.float16`), which can be significantly faster and save memory. Performance loss is negligible for most models, especially for larger ones. If your hardware supports it, you can enable `torch.bfloat16` instead for more range.
 
-[Pipeline](/docs/transformers/v5.5.0/en/main_classes/pipelines#transformers.Pipeline) also accepts **quantized models** to reduce memory usage even further. Make sure you have the [bitsandbytes](https://hf.co/docs/bitsandbytes/installation) library installed first, and then add `quantization_config` to `model_kwargs` in the pipeline.
+[Pipeline](/docs/transformers/v5.5.0/en/main_classes/pipelines#transformers.Pipeline) also accepts [**quantized models**](https://huggingface.co/docs/transformers/quantization/overview) to reduce memory usage even further. Make sure you have the [bitsandbytes](https://hf.co/docs/bitsandbytes/installation) library installed first, and then add `quantization_config` to `model_kwargs` in the pipeline.
 
 ## Inference for Large Models
 
@@ -264,6 +268,37 @@ preprocessed = pipeline.preprocess(inputs)
 model_outputs = pipeline.forward(preprocessed)
 outputs = pipeline.postprocess(model_outputs)
 ```
+
+## Example 1: ASR on 2-hour Long Podcast
+
+Transcribing a 2-hour podcast all at once would crash most GPUs. The ASR pipeline uses `ChunkPipeline` to process the audio in smaller windows (e.g., 30 seconds).
+
+```python
+from transformers import pipeline
+
+# The pipeline automatically slices the audio, processes chunks, and concatenates the text.
+asr_pipeline = pipeline("automatic-speech-recognition", model="openai/whisper-small")
+transcription = asr_pipeline(
+    "two_hour_podcast.mp3",
+    chunk_length_s=30
+)
+```
+
+## Example 2: Find Sound Events
+
+Classifying a long audio recording to find specific sound events. It processes the audio in short bursts and returns the probabilities for each burst.
+
+```python
+from transformers import pipeline
+
+audio_classifier = pipeline("zero-shot-audio-classification", model="laion/clap-htsat-unfused")
+# Evaluates chunks of audio against the candidate labels
+results = audio_classifier(
+    "long_environmental_recording.wav",
+    candidate_labels=["dog bark", "siren"]
+)
+```
+
 
 ## `datasets` are lazily loaded
 

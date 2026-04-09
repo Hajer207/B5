@@ -153,18 +153,22 @@ Label: Spam.
 - Multi-turn Chatbots: mimics human conversations
 - Coding agents: mimics developer thoughts and actions (devs explicitly write down what their step-by-step thinking, commands, and actions)
 
+## Using pretrained models
 
-## Transformers Quick Tour
+[Tasks](https://huggingface.co/models), or pipeline types, describe the “shape” of each model’s API (inputs and outputs) and are used to determine which Inference API and widget we want to display for any given model.
 
-**Transformers** is a PyTorch-first library. It provides models that are faithful to their papers, easy to use, and easy to hack.
+We recommend using the task selector in the Hugging Face Hub interface in order to select the appropriate checkpoints:
 
-This library is for:
+![](../assets/tasks.png){fig-align="center" .r-stretch}
 
-- Researchers and educators exploring or extending model architectures.
-- Practitioners fine-tuning, evaluating, or serving models.
-- Engineers who want a pretrained model that “just works” with a predictable API.
 
-Go through the [Quick Tour](https://huggingface.co/docs/transformers/quicktour).
+## Models Timeline
+
+The [Models Timeline](https://huggingface.co/spaces/yonigozlan/Transformers-Timeline) is an interactive chart of how architectures in Transformers have changed over time. You can scroll through models in order, spanning text, vision, audio, video, and multimodal use cases.
+
+Use the filters to narrow models by modality or task. Set custom date ranges to focus on models added during specific periods. Click a model card to see its capabilities, supported tasks, and documentation.
+
+![](../assets/timeline.png){fig-align="center" .r-stretch}
 
 
 ## What is the Hugging Face Hub?
@@ -193,35 +197,14 @@ Go through the [Quick Tour](https://huggingface.co/docs/transformers/quicktour).
 * **Public Hub**: Sharing and using public models is completely **free**.
 * **Private Options**: [Paid plans](https://huggingface.co/pricing) are available for users who wish to host models privately.
 
+## Transformers Quick Tour
 
-## Models Timeline
+**Transformers** is a PyTorch-first library. It provides models that are faithful to their papers, easy to use, and easy to hack.
 
-The [Models Timeline](https://huggingface.co/spaces/yonigozlan/Transformers-Timeline) is an interactive chart of how architectures in Transformers have changed over time. You can scroll through models in order, spanning text, vision, audio, video, and multimodal use cases.
+This library is for:
 
-Use the filters to narrow models by modality or task. Set custom date ranges to focus on models added during specific periods. Click a model card to see its capabilities, supported tasks, and documentation.
+- Researchers and educators exploring or extending model architectures.
+- Practitioners fine-tuning, evaluating, or serving models.
+- Engineers who want a pretrained model that “just works” with a predictable API.
 
-![](../assets/timeline.png){fig-align="center" .r-stretch}
-
-
-## Using pretrained models
-
-[Tasks](https://huggingface.co/models), or pipeline types, describe the “shape” of each model’s API (inputs and outputs) and are used to determine which Inference API and widget we want to display for any given model.
-
-We recommend using the task selector in the Hugging Face Hub interface in order to select the appropriate checkpoints:
-
-![](../assets/tasks.png){fig-align="center" .r-stretch}
-
-
-## Large Language Models (LLMs)
-
-**Large Language Models (LLMs)** are a powerful subset of deep neural NLP models characterized by:
-
-1. massive size (billions of parameters)
-2. extensive training data (trillions of tokens)
-3. ability to perform a wide range of language tasks
-
-## Vision-Language Models (VLMs)
-
-**Vision-Language Models (VLMs)** are language models that can process and understand images in addition to text.
-
-Example: [QARI-OCR](https://huggingface.co/NAMAA-Space/Qari-OCR-v0.3-VL-2B-Instruct) Structural Arabic Document Understanding.
+Go through the [Quick Tour](https://huggingface.co/docs/transformers/quicktour).
