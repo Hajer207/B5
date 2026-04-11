@@ -8,7 +8,8 @@ project:
     - index.qmd
     - W1/
     - W2/
-    # - W3/
+    - W3/
+    - W4/
 
 website:
   navbar:
@@ -17,10 +18,10 @@ website:
         text: "Python"
       - href: W2/
         text: "Data Science"
-      # - href: W3/
-        # text: "ML"
-      # - href: W4/
-      #   text: "DL"
+      - href: W3/
+        text: "ML"
+      - href: W4/
+        text: "DL"
       # - href: W5/
       #   text: "Agentic"
       # - href: W6/
@@ -61,6 +62,17 @@ format:
     width: 1600
     height: 900
     center: false
+    menu: 
+      custom:
+        - title: Links
+          icon: '<i class="fas fa-link"></i>'
+          content: >
+            <ul class="slide-menu-items">
+              <li class="slide-menu-item"><a href="/W1/">Python </a></li>
+              <li class="slide-menu-item"><a href="/W2/">Data Science </a></li>
+              <li class="slide-menu-item"><a href="/W3/">Machine Learning</a></li>
+              <li class="slide-menu-item"><a href="/W4/">Deep Learning</a></li>
+            </ul>
 
 number-depth: 1
 lightbox: auto

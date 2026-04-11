@@ -7,8 +7,8 @@ format: revealjs
 
 Before you begin, make sure Gradio is installed.
 
-```py
-!pip install gradio
+```sh
+pip install gradio
 ```
 
 ## Launch Interface

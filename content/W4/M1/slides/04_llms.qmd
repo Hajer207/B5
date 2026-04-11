@@ -3,7 +3,7 @@ title: "Large Language Models"
 format: revealjs
 ---
 
-## Large Language Models (LLMs)
+# Large Language Models (LLMs)
 
 **Large Language Models (LLMs)** are a powerful subset of deep neural NLP models characterized by:
 
@@ -11,73 +11,148 @@ format: revealjs
 2. extensive training data (trillions of tokens)
 3. ability to perform a wide range of language tasks
 
-## Terminology
+## Original 2017 Transformer
 
-* **Architecture:** The model's skeleton (e.g., BERT).
-* **Checkpoint:** The specific saved weights (e.g., `bert-base-cased`).
-* **Model:** Umbrella term for both.
+::: {.columns}
+::: {.column}
+- The **encoder** (left) maps an input sequence of symbol representations (tokens) to a sequence of continuous representations (vectors).
+- The **decoder** (right) then generates an output sequence of symbols (tokens) one element at a time.
+- At each step the model is auto-regressive, consuming the previously generated symbols as additional input when generating the next.
 
-## Transfer Learning
+-- [Attention is All You Need (Vaswani et al.)](https://arxiv.org/abs/1706.03762)
 
-**Transfer learning** is reusing a trained model on a new, related problem.
+:::
+::: {.column}
+![](../assets/transformer_2017.png){.r-stretch}
+:::
+:::
+<!-- end columns -->
 
-1. **Pretraining:** self-supervised training on trillions of tokens datasets.
-  - No specific task other than completing missing text.
-  - Result: word "meaning", grammar, common phrases, references, and other language features ..etc.
-2. **Fine-tuning:** supervised training on dataset with text targets
-   - Result: when prompted for a task, completes the task (e.g., answer questions or write code)
+## Variants of the Transformer
 
-Why Transfer learning? - It's dramatically much more economical, data and compute efficient, as well as environmentally friendly, than training a model from scratch.
+![An overview of some of the most popular large language transformers organized by architecture type and developers.](../assets/transformer_arch.png){fig-align="center" .r-stretch}
 
-## Example: QARI-OCR
+## Comparison Table
 
-[QARI-OCR](https://huggingface.co/NAMAA-Space/Qari-OCR-v0.3-VL-2B-Instruct) is a Vision-language Model (VLM) fine-tuned from `Qwen2-VL-2B-Instruct` to process Arabic documents. Key Features:
+Understanding these differences will help you choose the right model for your specific task.
 
-- 📐 **Layout-Aware Recognition**: Preserves document structure with HTML/Markdown tags
-- 🔤 **Full Diacritics Support**: Accurate recognition of tashkeel (Arabic diacritical marks)
-- 📝 **Multi-Font Handling**: Trained on 12 diverse Arabic fonts (14px-100px)
-- 🎯 **Structure-First Design**: Optimized for documents with headers, body text, and complex layouts
-- ⚡ **Efficient Training**: Only 11 hours on single GPU with 10k samples
-- 🖼️ **Robust Performance**: Handles low-resolution and degraded images
+| Architecture    | Attention Style                            | Prediction Goal                                      | Typical Use Cases                   | Popular Models                       |
+| --------------- | ------------------------------------------ | ---------------------------------------------------- | ----------------------------------- | ------------------------------------ |
+| Encoder–decoder (2017 Original) | Bidirectional (encoder) + causal (decoder) | Conditional generation (output sequence given input) | Translation, summarization, seq2seq | [BART](https://huggingface.co/docs/transformers/model_doc/bart) - [mBART](https://huggingface.co/docs/transformers/model_doc/mbart) - [Marian](https://huggingface.co/docs/transformers/model_doc/marian) - [T5](https://huggingface.co/docs/transformers/model_doc/t5)                   |
+| Decoder-only (2018 GPT-1)    | Causal (masked)                            | Next-token probability distribution                  | Autoregressive text generation      | [Hugging Face SmolLM Series](https://huggingface.co/HuggingFaceTB/SmolLM2-1.7B-Instruct) - [Meta's Llama Series](https://huggingface.co/docs/transformers/en/model_doc/llama4) - [Google's Gemma Series](https://huggingface.co/docs/transformers/main/en/model_doc/gemma3) - [DeepSeek's V3](https://huggingface.co/deepseek-ai/DeepSeek-V3) |
+| Encoder-only (2018 BERT)    | Bidirectional                              | Contextual embeddings, not next-token prediction     | Classification, retrieval, NER      | [BERT](https://huggingface.co/docs/transformers/model_doc/bert) - [DistilBERT](https://huggingface.co/docs/transformers/model_doc/distilbert) - [ModernBERT](https://huggingface.co/docs/transformers/en/model_doc/modernbert)                        |
 
-### QARI-OCR Model Performance
+## Modern Large Language Models (LLMs)
 
-| Metric                         | Score       |
-| ------------------------------ | ----------- |
-| **Character Error Rate (CER)** | 0.300       |
-| **Word Error Rate (WER)**      | 0.485       |
-| **BLEU Score**                 | 0.545       |
-| **Training Time**              | 11 hours    |
-| **CO₂ Emissions**              | 1.88 kg eq. |
+Most LLMs today are **Decoder-only** with billions of parameters. Trained in two phases:
 
-### QARI-OCR Training Details
+1. **Pretraining**: The model learns to predict the next token on vast amounts of text data
+2. **Instruction tuning**: The model is fine-tuned to follow instructions and generate helpful responses
 
-- **Base Model**: Qwen2-VL-2B-Instruct
-- **Training Data**: 10,000 synthetic Arabic documents with HTML markup
-- **Optimization**: 4-bit LoRA adapters (rank=16)
-- **Hardware**: Single NVIDIA A6000 GPU (48GB)
-- **Framework**: Unsloth + Hugging Face TRL
+This approach has led to models that can understand and generate human-like text across a wide range of topics and tasks.
 
-## How to train?.. Task Recipes
+### Supervised Learning
 
-Wondering how to fine-tune a **model** on a specific **dataset**? checkout the recipes on the left in transformers docs. Example task: [ASR](https://huggingface.co/docs/transformers/tasks/asr).
+Training task is to mimic the human-curated: `(prompt, output)` text sequences.
 
-![](../assets/resources_task_recipes.png){fig-align="left"}
+[FLAN T5 | Google](https://arxiv.org/abs/2210.11416): "We finetune various language models on 1.8K tasks phrased as instructions, and evaluate them on unseen tasks":
 
+::: {.columns}
+::: {.column}
+- Answer general knowledge questions:
+    - `Prompt: "What is the tallest building?" , Output: "The tallest building is ..."`
+- Translate from English to French:
+    - `Prompt: "Translate this paragraph ..." , Output: "Bonjour lemuv beleluo"`
+- Write code:
+    - `Prompt: "Write Python function to analyse ..." , Output: "def analyze(...)`
 
-## LLM Inference
+:::
+::: {.column}
+![](../assets/FLAN-T5.png){fig-align="center"}
+:::
+:::
+<!-- end columns -->
 
-**Inference** is the process of using a trained LLM to generate human-like text from a given input prompt.
+## Key capabilities of modern LLMs
 
-A LLM is trained to generate the next word (token) given some initial text (prompt) along with its own generated outputs up to a predefined length or when it reaches an end-of-sequence (`EOS`) token.
+Modern decoder-based LLMs have demonstrated impressive capabilities:
 
-## Transformer LLMs are multi-taskers
+| Capability | Description | Example |
+|------------|-------------|---------|
+| Text generation | Creating coherent and contextually relevant text | Writing essays, stories, or emails |
+| Summarization | Condensing long documents into shorter versions | Creating executive summaries of reports |
+| Translation | Converting text between languages | Translating English to Spanish |
+| Question answering | Providing answers to factual questions | "What is the capital of France?" |
+| Code generation | Writing or completing code snippets | Creating a function based on a description |
+| Reasoning | Working through problems step by step | Solving math problems or logical puzzles |
+| Few-shot learning | Learning from a few examples in the prompt | Classifying text after seeing just 2-3 examples |
 
-Easily switch between models or tasks, as long as the architecture is supported for a given task.
+You can experiment with decoder-based LLMs directly in your browser via model repo pages on the Hub. Here's an example with the classic [GPT-2](https://huggingface.co/openai-community/gpt2) (OpenAI's finest open source model).
 
-## Same model, different tasks
+## Practical applications of Encoder-decoder models
 
-For example, the same model can be used for separate tasks.
+Sequence-to-sequence models excel at tasks that require transforming one form of text into another while preserving meaning.
+
+| Application | Description | Example Model |
+|-------------|-------------|---------------|
+| Machine translation | Converting text between languages | Marian, T5 |
+| Text summarization | Creating concise summaries of longer texts | BART, T5 |
+| Data-to-text generation | Converting structured data into natural language | T5 |
+| Grammar correction | Fixing grammatical errors in text | T5 |
+| Question answering | Generating answers based on context | BART, T5 |
+
+## Interactive demo: speech-to-speech translation
+
+[Here's an interactive demo](https://course-demos-speech-to-speech-translation.hf.space) of a sequence-to-sequence model for translation:
+
+<center>
+<iframe
+	src="https://course-demos-speech-to-speech-translation.hf.space"
+	frameborder="0"
+	width="960"
+	height="680"
+></iframe>
+</center>
+
+## Choosing the right architecture
+
+When working on a specific NLP task, how do you decide which architecture to use? Here's a quick guide:
+
+::: {.columns}
+::: {.column}
+* **Text Classification** (Sentiment, Topic)
+    * Architecture: Encoder
+    * Examples: BERT, RoBERTa
+* **Text Generation** (Creative Writing)
+    * Architecture: Decoder
+    * Examples: GPT, LLaMA
+* **Translation**
+    * Architecture: Encoder-Decoder
+    * Examples: T5, BART
+* **Summarization**
+    * Architecture: Encoder-Decoder
+    * Examples: BART, T5
+:::
+::: {.column}
+* **Named Entity Recognition**
+    * Architecture: Encoder
+    * Examples: BERT, RoBERTa
+* **Question Answering** (Extractive)
+    * Architecture: Encoder
+    * Examples: BERT, RoBERTa
+* **Question Answering** (Generative)
+    * Architecture: Encoder-Decoder or Decoder
+    * Examples: T5, GPT
+* **Conversational AI**
+    * Architecture: Decoder
+    * Examples: GPT, LLaMA
+:::
+:::
+<!-- end columns -->
+
+## LLM Pipelines
+
+### Same model, different tasks {.smaller}
 
 ```py
 from transformers import pipeline
@@ -90,9 +165,7 @@ classifier = pipeline("sentiment-analysis", model=checkpoint)
 generator = pipeline("text-generation", model=checkpoint)
 ```
 
-## Same task, different models
-
-You may want to quickly try out several different models for a task.
+### Same task, different models {.smaller}
 
 ```py
 from transformers import pipeline
@@ -103,149 +176,21 @@ mistral = pipeline("text-generation", model="mistralai/Mistral-7B-v0.1")
 gemma = pipeline("text-generation", model="google/gemma-7b")
 ```
 
-## How LLMs actually generate text?
+# Inference for Large Models
 
-Two phases:
+- We use both Half-precision and Quantization to reduce memory requirement.
+- We also need to use a GPU `device="auto"`
 
-1. **Prefill**
-   1. Tokenization
-   2. Embedding
-   3. Processing
-2. **Decode**
-   1. Attention
-   2. Probability
-   3. Selection
-   4. Check
-
-### Phase 1: Prefill
-
-The prefill phase is like the preparation stage in cooking - it's where all the initial ingredients are processed and made ready. This phase involves three key steps:
-
-1. **Tokenize**: identify input as segmented parts.
-2. **Embed**: map to corrresponding vectors.
-3. **Feed Forward**: run the vectors through the neural network. 
-
-Computationally intensive: think of it as reading the entire text word-for-word each time, before starting to write the next word.
-
-You can experiment with different tokenizers (first step in this phase) in the interactive playground below:
-
-<iframe
-	src="https://agents-course-the-tokenizer-playground.static.hf.space"
-	frameborder="0"
-	width="850"
-	height="450"
-></iframe>
-
-
-## The Role of Attention
-
-The attention mechanism is what gives LLMs their ability to understand context and generate coherent responses. When predicting the next word, not every word in a sentence carries equal weight - for example, in the sentence *"The capital of France is ..."*, the words "France" and "capital" are crucial for determining that "Paris" should come next. This ability to focus on relevant information is what we call attention.
-
-![](https://huggingface.co/datasets/agents-course/course-images/resolve/main/en/unit1/AttentionSceneFinal.gif){fig-align="center" width="60%"}
-
-This process of identifying the most relevant words to predict the next token has proven to be incredibly effective.
-
-## Context Length
-
-The **Context Length** is the maximum number of tokens the model can consider at once when generating a response.
-
-- In an ideal world, we could feed unlimited context to the model, but hardware constraints and computational costs make this impractical.
-- Different models are designed with different context lengths to balance capability with efficiency.
-
-
-## Phase 2: Decode
-
-The model generates one token.
-
-That token may be: a space, a comma, a digit, a character, a word, or a subword. This token is selected based on:
-
-1. It's probability
-2. Chosen **Sampling Strategy**
-
-## Token Selection
-
-When the model needs to choose the next token, it starts with raw probabilities (called **logits**) for every word in its vocabulary. But how do we turn these probabilities into actual choices? Let's break down the process:
-
-![image](https://huggingface.co/reasoning-course/images/resolve/main/inference/1.png)  
-
-1. **Raw Logits**: Think of these as the model's initial gut feelings about each possible next word
-2. **Temperature Control**: Like a creativity dial - higher settings (>1.0) make choices more random and creative, lower settings (<1.0) make them more focused and deterministic
-3. **Top-p (Nucleus) Sampling**: Instead of considering all possible words, we only look at the most likely ones that add up to our chosen probability threshold (e.g., top 90%)
-4. **Top-k Filtering**: An alternative approach where we only consider the k most likely next words
-
-## Managing Repetition
-
-One common challenge with LLMs is their tendency to repeat themselves - much like a speaker who keeps returning to the same points. To address this, we use two types of penalties:
-
-1. **Presence Penalty**: A fixed penalty applied to any token that has appeared before, regardless of how often. This helps prevent the model from reusing the same words.
-2. **Frequency Penalty**: A scaling penalty that increases based on how often a token has been used. The more a word appears, the less likely it is to be chosen again.
-
-![image](https://huggingface.co/reasoning-course/images/resolve/main/inference/2.png)  
-
-These penalties are applied early in the token selection process, adjusting the raw probabilities before other sampling strategies are applied. Think of them as gentle nudges encouraging the model to explore new vocabulary.
-
-## Control Output Length
-
-We can control generation length in several ways:
-
-1. **Token Limits**: Setting minimum and maximum token counts
-2. **Stop Sequences**: Defining specific patterns that signal the end of generation
-3. **End-of-Sequence Detection**: Letting the model naturally conclude its response
-
-
-## Sampling Strategies
-
-Just like a writer might choose between being:
-
-- more creative
-- or more precise
-
-we can adjust how the model makes its token selections.
-
-You can interact with the basic decoding process yourself with SmolLM2 in this Space (remember, it decodes until reaching an **EOS** token which is  **<|im_end|>** for this model):
-
-<iframe
-	src="https://agents-course-decoding-visualizer.hf.space"
-	frameborder="0"
-	width="850"
-	height="450"
-></iframe>
-
-## Beam Search
-
-Rather than greedily selected the most likely word individually, **Beam Search explores multiple possible paths simultaneously**. Then select the sequence with the highest overall probability.
-
-You can explore beam search visually here:
-
-<iframe
-	src="https://agents-course-beam-search-visualizer.hf.space"
-	frameborder="0"
-	width="850"
-	height="450"
-></iframe>
-
-This approach often produces more coherent and grammatically correct text, though it requires more computational resources than simpler methods.
-
-## Custom generation
-
-Custom generation methods enable specialized behavior such as:
-
-1. have the model continue thinking if it is uncertain;
-2. roll back generation if the model gets stuck;
-3. handle special tokens with custom logic;
-4. use specialized KV caches;
-
-See: [Finding custom generation methods](https://huggingface.co/docs/transformers/generation_strategies#finding-custom-generation-methods).
-
-
-## Inference for Large Models
+Install:
 
 ```sh
-!pip install -U transformers bitsandbytes
+pip install -U bitsandbytes
 ```
 
+Load LLM fot `text-generation` task via pipeline:
+
 ```py
-pipeline_llm = pipeline(
+pipe = pipeline(
     "text-generation",
     model="mistralai/Mistral-7B-v0.1",        
     dtype=torch.bfloat16,    # Half-precision (reduce memory)
@@ -259,7 +204,9 @@ pipeline_llm = pipeline(
 
 ## Common `generate()` Options
 
-[generate()](https://huggingface.co/docs/transformers/v5.5.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) is a powerful tool that can be heavily customized. This can be daunting for a new users. This section contains a list of popular generation options that you can define in most text generation tools in Transformers: [generate()](https://huggingface.co/docs/transformers/v5.5.0/en/main_classes/text_generation#transformers.GenerationMixin.generate), [GenerationConfig](https://huggingface.co/docs/transformers/v5.5.0/en/main_classes/text_generation#transformers.GenerationConfig), `pipelines`, the `chat` CLI, …
+LLMs are trained to generate the next `token` given some initial `prompt`, repeatedly along with its own generated `outputs`.
+
+The [generate()](https://huggingface.co/docs/transformers/v5.5.0/en/main_classes/text_generation#transformers.GenerationMixin.generate) method (equivalent to using `__call__` directly) is a powerful tool that can be heavily customized:
 
 |Option name|Type|Simplified description|
 |---|---|---|
@@ -271,7 +218,6 @@ pipeline_llm = pipeline(
 |`eos_token_id`|`list[int]`|The token(s) that will cause generation to stop. The default value is usually good, but you can specify a different token.|
 
 See: [Common Options](https://huggingface.co/docs/transformers/v5.5.0/en/llm_tutorial#common-options).
-
 
 ## Pitfalls
 
@@ -287,10 +233,6 @@ Common issues when using [generate()](https://www.google.com/search?q=/docs/tran
 Pipelines return 20 tokens by default unless defined otherwise in a model's [GenerationConfig](https://www.google.com/search?q=/docs/transformers/v5.5.0/en/main_classes/text_generation%23transformers.GenerationConfig). Manually set `max_new_tokens` to control length. [Decoder-only](https://hf.co/learn/nlp-course/chapter1/6?fw=pt) models return the prompt and generated tokens by default.
 
 ```python
-from transformers import pipeline
-
-pipe = pipeline("text-generation", model="mistralai/Mistral-7B-v0.1")
-
 # Default: ~20 tokens
 pipe("A sequence of numbers: 1, 2")
 
@@ -321,6 +263,7 @@ tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1", padding_s
 tokenizer.pad_token = tokenizer.eos_token
 
 pipe = pipeline("text-generation", model="mistralai/Mistral-7B-v0.1", tokenizer=tokenizer)
+
 pipe([
   "1, 2, 3",      # input 1
   "A, B, C, D, E" # input 2
@@ -340,6 +283,147 @@ messages = [
 # Pipeline automatically applies the chat template
 pipe(messages, max_new_tokens=50)
 ```
+
+## How LLMs actually generate text?
+
+- Understanding the mechanism gives us control over it
+- Having control means we can optimize to our own metrics
+
+Generation of text in LLMs works in two phases:
+
+1. **Prefill**
+   1. Tokenization
+   2. Embedding
+   3. Processing
+2. **Decode**
+   1. Attention
+   2. Probability
+   3. Selection
+   4. Check
+
+## Phase 1: Prefill
+
+Like reading the entire text word-for-word each time, before starting to write the next word. It involves:
+
+1. **Tokenization**: identify input as segmented parts.
+2. **Embedding**: map to corrresponding vectors.
+3. **Processing**: run the vectors through the neural network. 
+
+## The Tokenizer Playground
+
+You can [experiment with different tokenizers](https://agents-course-the-tokenizer-playground.static.hf.space) (first step in this phase) in the interactive playground below:
+
+<center>
+<iframe
+	src="https://agents-course-the-tokenizer-playground.static.hf.space"
+	frameborder="0"
+	width="850"
+	height="450"
+></iframe>
+</center>
+
+
+## The Role of Attention
+
+When predicting the next word, not every word in a sentence carries equal weight - for example, in the sentence *"The capital of France is ..."*, the words "France" and "capital" are crucial for determining that "Paris" should come next. This ability to focus on relevant information is what we call attention.
+
+![](../assets/AttentionSceneFinal.gif){fig-align="center"}
+
+This involves many computationally intensive operations.
+
+## Context Length
+
+- The model should handle the 10,000th token just as reliably as the 100th.
+- However, in practice, this assumption does not hold. We observe that model performance varies significantly as input length changes, even on simple tasks.
+
+![](../assets/context_rot.png){fig-align="center" .r-stretch}
+
+Figure shows 18 LLMs, including the state-of-the-art GPT-4.1, Claude 4, Gemini 2.5, and Qwen3 models. Our results reveal that models do not use their context uniformly; instead, their performance grows increasingly unreliable as input length grows. -- ([July 14, 2025 Context Rot | Chroma](https://www.trychroma.com/research/context-rot))
+
+## Phase 2: Decode
+
+- The model generates one token.
+- It is sampled from a probability distribution over all token in the vocabulary.
+- That token may be: a space, a comma, a digit, a character, a word, or a subword.
+- It could be a special token **EOS** (end of sequence) to stop generation.
+
+## Sampling Strategies
+
+You can [interact with the basic decoding process](https://agents-course-decoding-visualizer.hf.space) yourself with SmolLM2 in this Space (remember, it decodes until reaching an **EOS** token which is  **<|im_end|>** for this model):
+
+<center>
+<iframe
+	src="https://agents-course-decoding-visualizer.hf.space"
+	frameborder="0"
+	width="850"
+	height="450"
+></iframe>
+</center>
+
+## Token Selection
+
+::: {.columns}
+::: {.column}
+1. **Logits**: unprocessed probability distribution over all tokens in the vocabulary
+2. **Temperature Scaling**:
+    - higher settings (>1.0) make choices more random and creative
+    - lower settings (<1.0) make them more focused and deterministic
+3. **Top-p (Nucleus) Sampling**: Instead of considering all possible words, we only look at the most likely ones that add up to our chosen probability threshold (e.g., top 90%)
+4. **Top-k Filtering**: An alternative approach where we only consider the `k` most likely next words
+
+:::
+::: {.column}
+![](../assets/token_selection.png){fig-align="center"}
+
+:::
+:::
+<!-- end columns -->
+
+## Managing Repetition
+
+::: {.columns}
+::: {.column}
+One common challenge with LLMs is their tendency to repeat themselves. To address this, we use two types of penalties:
+
+1. **Presence Penalty**: A fixed penalty applied to any token that has appeared before, regardless of how often. This helps prevent the model from reusing the same words.
+2. **Frequency Penalty**: A scaling penalty that increases based on how often a token has been used. The more a word appears, the less likely it is to be chosen again.
+
+These penalties are applied early in the token selection process, adjusting the raw probabilities before other sampling strategies are applied. Think of them as gentle nudges encouraging the model to explore new vocabulary.
+:::
+::: {.column}
+![](../assets/manage_repetition.png){fig-align="center"}
+:::
+:::
+<!-- end columns -->
+
+## Beam Search
+
+**Beam Search explores multiple possible paths simultaneously**. Then select the sequence with the highest overall probability.
+
+You can [explore beam search visually here](https://agents-course-beam-search-visualizer.hf.space):
+
+<center>
+<iframe
+	src="https://agents-course-beam-search-visualizer.hf.space"
+	frameborder="0"
+	width="850"
+	height="450"
+></iframe>
+</center>
+
+This approach often produces more coherent and grammatically correct text, though it requires more computational resources than simpler methods.
+
+## Custom generation
+
+Custom generation methods enable specialized behavior such as:
+
+1. have the model continue thinking if it is uncertain;
+2. roll back generation if the model gets stuck;
+3. handle special tokens with custom logic;
+4. use specialized KV caches;
+
+See: [Finding custom generation methods](https://huggingface.co/docs/transformers/generation_strategies#finding-custom-generation-methods).
+
 
 ## Resources
 
