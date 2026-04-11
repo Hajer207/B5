@@ -3,7 +3,7 @@ title: "Introduction to LLM-based NLP"
 format: revealjs
 ---
 
-## What is NLP?
+# Natural Language Processing (NLP)
 
 NLP bridges the gap between computers and human language. It combines elements of:
 
@@ -12,7 +12,121 @@ NLP bridges the gap between computers and human language. It combines elements o
 3. artificial intelligence
 
 Recent success in NLP has been driven by **Deep Learning approach** which is based on [massive datasets](https://github.com/niderhoff/nlp-datasets) and models that can learn from data.
+إليك الترجمة الدقيقة والموجزة للنص مع الحفاظ على كافة الأمثلة (الإنجليزية والعربية) كما طلبت:
+# لماذا تعد معالجة اللغات صعبة {dir="rtl"}
 
+## لماذا تعد معالجة اللغات صعبة {dir="rtl"}
+
+ندرك المعنى والتشابه بديهياً؛ بينما تحتاج الحواسيب إلى تمثيلات رقمية مهيكلة. يجب على النماذج تحويل اللغة المعقدة والمرنة إلى متجهات رياضية.
+
+تواجه معالجة اللغات الطبيعية الحديثة أربعة عوائق أساسية:
+
+::: {.incremental}
+* **الغموض** (معجمي، دلالي، تركيبي)
+* **التجانس اللفظي**
+* **التهكم والسخرية**
+* **تعدد اللهجات**
+* **العامية والمصطلحات الخاصة**
+:::
+
+## الغموض المعجمي (Lexical ambiguity) {dir="rtl"}
+
+**الغموض المعجمي** هو نوع فرعي من الغموض الدلالي حيث تكون الكلمة أو المقطع الصرفي غامضاً.
+
+::: {.incremental}
+* "The fisherman went to the bank" (كلمة "bank" تعني ضفة النهر أو مبنى البنك).
+* "شربت من العين" (نبع الماء).
+* "أبصرت بـ العين" (عضو البصر).
+* "أرسل القائد عيناً لاستطلاع العدو" (جاسوساً).
+* "اشتريت هذا بعينه" (بذاته/نفسه).
+:::
+
+## الغموض الدلالي (Semantic ambiguity) {dir="rtl"}
+
+ينتج **الغموض الدلالي** عن التعبيرات التي تحمل معاني متعددة.
+
+::: {.incremental}
+* "It’s on the house" (مجاني أو حرفياً فوق المنزل).
+* "That went over my head" (عدم فهم أو مرور شيء فوق الرأس).
+* "Not your business" (ليس من شأنك).
+* "طارت الطيور بأرزاقها" (حرفياً: طارت بالطعام | مقصوداً: فات الأوان).
+:::
+
+## الغموض التركيبي (Syntactic Ambiguity) {dir="rtl"}
+
+يحدث **الغموض التركيبي** عندما يكون للجملة شجرات إعرابية متعددة.
+
+::: {.incremental}
+* "I saw the man on the beach with my binoculars."
+* التفسير 1: رأيت الرجل باستخدام منظاري.
+* التفسير 2: الرجل كان يحمل منظاري معه.
+:::
+
+## التجانس اللفظي (Homonymy) {dir="rtl"}
+
+يحدث **التجانس اللفظي** عندما تُنطق الكلمات بنفس الطريقة.
+
+::: {.incremental}
+* "This is a row of raw materials" (تشابه نطق row و raw).
+* "I see the sea" (تشابه نطق see و sea).
+* "Without my glasses I can't see the glass" (نظارة مقابل زجاج).
+* "خاتم من ذَهَب" (المعدن).
+* "ذَهَبَ محمد إلى المدرسة" (فعل المغادرة).
+:::
+
+## التهكم والسخرية (Irony and sarcasm) {dir="rtl"}
+
+في أي وقت تقول فيه عكس الحقيقة عمداً، فهذا هو التهكم اللفظي.
+
+::: {.incremental}
+* "I love it when my computer crashes" (سخرية من تعطل الحاسوب).
+* "Fantastic! I love waiting in line" (سخرية من الازدحام).
+* "ما شاء الله، عبقري!" (تقال لمن يرتكب خطأ فادحاً).
+* "جيتك يا عبد المعين تعين..." (تهكم لفظي).
+* "طبيب يدخن السجائر" (مفارقة موقفية).
+* "باب النجار مخلّع" (مفارقة موقفية).
+:::
+
+## اللهجات (Dialects) {dir="rtl"}
+
+تختلف اللهجات في التهجئة، النطق، والمفردات حسب المناطق.
+
+::: {.incremental}
+* الفصحى: كيف حالك؟
+* الخليجية: شلونك؟ / شعلومك؟
+* المصرية: إزيك؟ / عامل إيه؟
+* الشامية: كيفك؟
+* المغربية: كيداير؟ / لباس؟
+* النفي (المصرية/الشامية): ما اكلتش / ما اكلت.
+* النفي (الخليجية): ما كليت / مو ماكل.
+:::
+
+## العامية والمصطلحات الخاصة (Slang and jargon) {dir="rtl"}
+
+كلمات غير رسمية أو فنية تتطور باستمرار ويصعب على الآلات فهم سياقها.
+
+::: {.incremental}
+* "That movie was lit!" (الفيلم ممتاز).
+* "I'm feeling blue" (أشعر بالحزن).
+* "كبّر دماغك" (تجاهل الأمر).
+* "سحَب عليه" (تجاهله/غاب عن الموعد).
+* "قصف جبهته" (إحراج برد مفحم).
+* ROI / KPI / ML (مصطلحات مهنية تخصصية).
+:::
+
+# Common Applications of NLP
+
+## NLU & NLG
+
+**Natural Language Understanding (NLU)**: extract meaning, intention, emotion, importance, and correlation between words/texts/speech.
+
+- Examples: Classification, NER, and ASR
+
+**Natural Language Generation (NLG)**: generate the most likely sequence given previous sequence.
+
+- Examples: Question Answering, Summarization, Translation, and Coding.
+
+![](../assets/nlp_venn.png){fig-align="center" .r-stretch}
 
 ## Machine Translation (MT)
 
@@ -123,15 +237,6 @@ Convert text into speech.
 
 > Example: [NAMAA-Saudi-TTS](https://huggingface.co/spaces/omarelshehy/NAMAA-Saudi-Voice) refined to generate natural Saudi dialect speech, targeting everyday conversational usage rather than Modern Standard Arabic (MSA).
 
-## NLU & NLG
-
-**Natural Language Understanding (NLU)**: extract meaning, intention, emotion, importance, and correlation between words/texts/speech.
-
-- Examples: Classification, NER, and ASR
-
-**Natural Language Generation (NLG)**: generate the most likely sequence given previous sequence.
-
-- Examples: Question Answering, Summarization, Translation, and Coding.
 
 ## What is the Hugging Face Hub?
 
