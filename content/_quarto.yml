@@ -10,6 +10,7 @@ project:
     - W2/
     - W3/
     - W4/
+    - W5/
 
 website:
   navbar:
@@ -17,15 +18,13 @@ website:
       - href: W1/
         text: "Python"
       - href: W2/
-        text: "Data Science"
+        text: "DS"
       - href: W3/
         text: "ML"
       - href: W4/
+        text: "Agentic"
+      - href: W5/
         text: "DL"
-      # - href: W5/
-      #   text: "Agentic"
-      # - href: W6/
-      #   text: "Vibe"
   sidebar: 
     style: docked
     search: true
@@ -68,10 +67,11 @@ format:
           icon: '<i class="fas fa-link"></i>'
           content: >
             <ul class="slide-menu-items">
-              <li class="slide-menu-item"><a href="/W1/">Python </a></li>
-              <li class="slide-menu-item"><a href="/W2/">Data Science </a></li>
-              <li class="slide-menu-item"><a href="/W3/">Machine Learning</a></li>
-              <li class="slide-menu-item"><a href="/W4/">Deep Learning</a></li>
+              <li class="slide-menu-item"><a href="/W1/">Python</a></li>
+              <li class="slide-menu-item"><a href="/W2/">Applied Data Science</a></li>
+              <li class="slide-menu-item"><a href="/W3/">Applied Machine Learning</a></li>
+              <li class="slide-menu-item"><a href="/W4/">Agentic AI</a></li>
+              <li class="slide-menu-item"><a href="/W5/">Applied Deep Learning</a></li>
             </ul>
 
 number-depth: 1
