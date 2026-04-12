@@ -1,3 +1,6 @@
+preview:
+	quarto preview ./content
+
 publish:
 	quarto publish gh-pages ./content --no-render
 

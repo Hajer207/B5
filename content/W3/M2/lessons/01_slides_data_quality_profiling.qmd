@@ -118,10 +118,6 @@ Compare multiple versions of the *same* dataset to learn what changed:
 
 ## Data Quality Alerts (Quick Diagnostic)
 
-Instead of manually writing every check, we can start from **data quality alerts**.
-
-In this course we rely on a one-liner approach (example library: `ydata.ai`) to surface common issues:
-
 - some alerts target **individual columns**
 - others target **relationships** between columns
 - others are **dataset-wide**
@@ -204,4 +200,4 @@ alert_duplicates = num_duplicates > DUPLICATE_THRESHOLD
 - Use **dataset comparison** to track quality drift across versions
 - Convert **data quality alerts** into a loop: clean → transform → re-profile
 
-Checkout: [Data Quality Cheatsheet](../texts/text_data_quality_profiling.qmd).
+Checkout: [Data Quality Cheatsheet](../texts/text_data_quality_profiling.qmd) which is based on [ydata.ai](https://docs.profiling.ydata.ai/latest/) profiling library.
