@@ -1,12 +1,25 @@
 ---
 format: html
+title: "Applied Machine Learning"
+subtitle: "Building Predictive ML Pipelines with Scikit-learn"
 mermaid-format: svg
 toc-depth: 2
 ---
 
+By the end of this course, you should be able to: 
+
+1. Build **regression models** that use recorded data to estimate unknown data and make forecasts
+1. Build **classifier models** that can inform decision making in medical and business settings
+1. Build **reliable data pipelines** with robust pre-processing, post-processing with data quality and **privacy** in mind
+1. Analyze various **modeling issues** and **data quality issues**, debug them, and avoid blind-spots that fail many practitioners silently
+1. Apply **meta-learning** to search and automatically select the best model, from a set of models, for a given task
+1. Apply XAI to **explain model predictions** and feature importance using general methods that apply to all types of predictive models
+
 ## Module 1: Linear Models
 
 ### M1-1: Introduction to ML
+
+Learning outcomes:
 
 1. Define *Machine Learning* and understand its utility
 1. Identify the two main tasks in *Supervised ML*
@@ -18,6 +31,8 @@ toc-depth: 2
 **Materials:** [[Slides]](M1/lessons/01_slides_Intro_ML.qmd)
 
 ### M1-2: Linear Models
+
+Learning outcomes:
 
 1. Given a DataFrame, split the feature columns from the target columns
 1. Train a regressor (`LinearRegression`) model
@@ -37,6 +52,8 @@ toc-depth: 2
 
 ### M1-3: Non-linear Patterns
 
+Learning outcomes:
+
 1. Distinguish between linear and non-linear relationships.
 1. Fit non-linear patterns using non-linear models.
 1. Fit non-linear patterns using linear models with `PolynomialFeatures`.
@@ -48,6 +65,8 @@ toc-depth: 2
 ## Module 2: Predictive Modeling Pipelines
 
 ### M2-1: Data Profiling and Privacy
+
+Learning outcomes:
 
 1. Define *data quality profiling* and why it matters
 2. Explain how profiling differs by *data type* (tabular, time-series, text, ...)
@@ -66,6 +85,8 @@ toc-depth: 2
 ### M2-2: Pipelines
 
 Goal: Build a Pipeline to handle preprocessing of both categorical and numerical features.
+
+Learning outcomes:
 
 1. Identify causes of missing data
 2. Apply `KNNImputer` to fill missing values; both numerical and categorical
@@ -101,6 +122,8 @@ Goal: Build a Pipeline to handle preprocessing of both categorical and numerical
 
 ### M3-1: Evaluation Metrics
 
+Learning outcomes:
+
 1. Distinguish between loss function and evaluation metric
 2. List 3 Regression Metrics and 3 Classification Metrics
 3. Given a model, verify it is actually learning from the data
@@ -116,6 +139,8 @@ Goal: Build a Pipeline to handle preprocessing of both categorical and numerical
 2. [[Lab]](M3/lessons/02_lab_generalization.ipynb)
 
 ### M3-2: Hyper-parameter Tuning
+
+Learning outcomes:
 
 1. Given Linear Regression or Decision Tree model, distinguish between it's *parameters* and *hyper-parameters*
 2. Recognize the 5 elements of hyper-parameter search in scikit-learn
@@ -135,6 +160,8 @@ Goal: Build a Pipeline to handle preprocessing of both categorical and numerical
 
 ### M4-1: Regression Metrics
 
+Learning outcomes:
+
 1. Explain why regression models need dedicated evaluation metrics.
 2. Interpret and compare MSE, ($R^2$), MAE, median AE, and MAPE.
 3. Diagnose regression models visually using prediction and residual plots.
@@ -146,6 +173,8 @@ Goal: Build a Pipeline to handle preprocessing of both categorical and numerical
 - [[Lab]](M4/lessons/02_lab_regression_metrics.ipynb)
 
 ### M4-2: Classification Metrics
+
+Learning outcomes:
 
 1. Distinguish between classification metrics on the basis of $FP$ and $FN$
 2. Given a confusion matrix; tell the performance of a classifier
@@ -159,6 +188,8 @@ Goal: Build a Pipeline to handle preprocessing of both categorical and numerical
 - [[Widget: Classifier Threshold]](M4/lessons/widget_threshold.qmd)
 
 ### M4-3: Classifier Threshold Tuning
+
+Learning outcomes:
 
 1. Distinguish cases where one should trade Recall for Precision and vice-versa
 2. Identify the component that affects this trade-off in a fitted classifier (it is the classification threshold)
@@ -175,6 +206,8 @@ Goal: Build a Pipeline to handle preprocessing of both categorical and numerical
 
 ### M5-1: Decision Trees
 
+Learning outcomes:
+
 1. Explain how decision trees work for regression; two levels deep
 2. Explain how decision trees work for classification; two levels deep
 3. Explain how the maximum depth impacts generalization performance?
@@ -187,6 +220,8 @@ Goal: Build a Pipeline to handle preprocessing of both categorical and numerical
 
 
 ### M5-2: Ensemble Methods
+
+Learning outcomes:
 
 1. Describe the bagging ensemble method
 2. Describe the boosting ensemble method
@@ -201,6 +236,8 @@ Goal: Build a Pipeline to handle preprocessing of both categorical and numerical
 - [[Lab]](M5/lessons/05_lab_ensembles.ipynb)
 
 ### M5-3: Explainable AI
+
+Learning outcomes:
 
 1. Show the impact (positive and negative) of features on individual predictions made by the model
 2. Explian the Waterfall Plot as visualized
