@@ -123,19 +123,19 @@ Learning outcomes:
 
 **Materials:**
 
-1. [Slides: Pipeline](M2/lessons/03_slides_pipeline.qmd)
+1. [Slides: Pipelines](M2/lessons/03_slides_pipeline.qmd)
      - [[Lab 1.A: Handle Missing Values]](M2/lessons/lab_impute.ipynb)
      - [[Lab 1.B: Scaling: Numerical Features]](M2/lessons/lab_scale.ipynb)
      - [[Lab 1.C: Encoding: Cateogrical Features]](M2/lessons/lab_encode.ipynb)
-2. [[Lab 2]](M2/lessons/04_lab_pipeline.ipynb)
+2. [[Lab 2: Pipelines]](M2/lessons/04_lab_pipeline.ipynb)
 
 **Exercises**:
 
 1. [[Effect of rescaling on a k-neighbors models]](M2/exercises/01_scaling_knn.ipynb)
 2. [[Categorical feature encoding]](M2/exercises/02_categorical_encoding_ex.ipynb)
-3. [[Mult-variable Regression 1]](M2/exercises/03_multi-variable_regression_ex_1.ipynb)
-4. [[Mult-variable Regression 2]](M2/exercises/04_multi-variable_regression_ex_2.ipynb)
-5. [[High-cardinality categorical features]](M2/exercises/05_high-cardinality.ipynb)
+3. [[High-cardinality categorical features]](M2/exercises/05_high-cardinality.ipynb)
+4. [M2.Ex1: Advertising Revenue](M2/exercises/ex1_multi-reg.ipynb.ipynb)
+5. [M2.Ex2: Fuel Efficiency](M2/exercises/ex2_multi-reg.ipynb.ipynb)
 
 ## Module 3: Model Selection and Evaluation
 
