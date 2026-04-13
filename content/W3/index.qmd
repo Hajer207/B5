@@ -47,8 +47,15 @@ Learning outcomes:
 1. Train a classifier (`LogisticRegression`) model
 1. Given a `DecisionBoundaryDisplay` distinguish between a classifier's `predict` and `predict_proba` methods
 
-**Materials:** [[Slides]](M1/lessons/02_slides_linear_models.qmd), [[Lab]](M1/lessons/03_lab_linear_models.ipynb)
-**Assignments:** [Linear Regression 1](M1/exercises/02_linear_regression_ex.ipynb), [Linear Regression 2](M1/exercises/03_linear_regression_ex.ipynb)
+**Materials:**
+
+- [Slides: Linear Models](M1/lessons/02_slides_linear_models.qmd)
+- [[Lab: Linear Models]](M1/lessons/03_lab_linear_models.ipynb)
+
+**Exercises:**
+
+- [M1.Ex1](M1/exercises/ex1_reg.ipynb)
+- [M1.Ex2](M1/exercises/ex2_reg.ipynb)
 
 ### M1-3: Non-linear Patterns
 
@@ -60,7 +67,15 @@ Learning outcomes:
 1. Fit non-linear patterns using linear models with `SplineTransformer`.
 1. Recognize Decision Trees and Support Vector Machines as non-linear models.
 
-**Materials:** [[Slides]](M1/lessons/04_slides_non_linear_patterns.qmd), [[Lab]](M1/lessons/05_lab_non_linear_patterns.ipynb)
+**Materials:**
+
+- [Slides: Non-linear patterns](M1/lessons/04_slides_non_linear_patterns.qmd)
+- [Lab: Non-linear patterns](M1/lessons/05_lab_non_linear_patterns.ipynb)
+
+**Exercises:**
+
+- [M1.Ex3](M1/exercises/ex3_class.ipynb)
+- [M1.Ex4](M1/exercises/ex4_non-linear.ipynb)
 
 ## Module 2: Predictive Modeling Pipelines
 
@@ -110,7 +125,7 @@ Learning outcomes:
      - [[Lab 1.C: Encoding: Cateogrical Features]](M2/lessons/lab_encode.ipynb)
 2. [[Lab 2]](M2/lessons/04_lab_pipeline.ipynb)
 
-**Assignments**:
+**Exercises**:
 
 1. [[Effect of rescaling on a k-neighbors models]](M2/exercises/01_scaling_knn.ipynb)
 2. [[Categorical feature encoding]](M2/exercises/02_categorical_encoding_ex.ipynb)
