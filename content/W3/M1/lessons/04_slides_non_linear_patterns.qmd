@@ -135,27 +135,7 @@ Connect to the notion of **underfitting**: the model is too simple to capture th
 ::::
 
 
-## Strategy 1: Non-linear models
-
-:::: {.columns}
-
-::: {.column width="60%"}
-- One solution is to use **non-linear estimators** directly. Things like: Decision Trees, Random Forests, SVMs
-- These models can represent **curved decision boundaries** or non-linear regression functions.
-:::
-
-::: {.column width="40%"}
-![](../assets/non_linear_decision_tree.png)
-:::
-
-::::
-
-:::: {.notes}
-At this stage, keep the description high-level. The key idea is that some models are non-linear “by design” and can adapt flexibly to complex patterns.
-::::
-
-
-## Strategy 2: Non-linear feature engineering
+## Non-linear feature engineering
 
 - Another strategy: **keep the model linear**, but **transform the features**.
   - `PolynomialFeatures(degree=3)`: $( x^1, x^2, x^3, \dots )$
@@ -271,6 +251,25 @@ Explain that splines give more local control than a single global polynomial. We
 
 :::: {.notes}
 Encourage students to see both as feature engineering tools. Choice depends on problem, data range, and how much local flexibility is needed.
+::::
+
+## Strategy 2: Non-linear models
+
+:::: {.columns}
+
+::: {.column width="60%"}
+- One solution is to use **non-linear estimators** directly. Things like: Decision Trees, Random Forests, SVMs
+- Decision Tree Regressors automatically split features and averages it's y values at that range
+:::
+
+::: {.column width="40%"}
+![](../assets/non_linear_decision_tree.png)
+:::
+
+::::
+
+:::: {.notes}
+At this stage, keep the description high-level. The key idea is that some models are non-linear “by design” and can adapt flexibly to complex patterns.
 ::::
 
 
