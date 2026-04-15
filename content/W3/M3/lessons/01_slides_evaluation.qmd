@@ -182,42 +182,6 @@ Reinforce: if the model family cannot represent the true pattern, collecting mor
 
 ---
 
-## Model scalability: can the model learn from more data?
-
-- **Learning curves** show how performance changes as training size increases
-- Typical intuition:
-  - train score vs test score shape can reveal under-fitting, good-fit, or over-fitting
-- A **test-score plateau** can indicate:
-  - more data might not improve generalization anymore
-
-:::: {.notes}
-Reading learning curves: pay attention to whether the *gap* between train and test shrinks (variance reduction via more data) or whether both curves improve slowly (bias/under-fitting). When the test curve plateaus, new data often becomes diminishing returns.
-::::
-
----
-
-## Learning Curve
-
-**Learning curves** show the effect of adding more training samples.
-
-![Figure: Learning Curve](https://scikit-learn.org/stable/_images/sphx_glr_plot_learning_curve_001.png)
-
-Press `S` to open speaker notes.
-
-:::: {.notes}
-Left: naive Bayes classifier. Its shape can be found in more complex datasets very often:
-
-- the training score is very high when using few samples for training and decreases when increasing the number of samples
-- whereas the test score is very low at the beginning and then increases when adding samples.
-- the training and test scores become more realistic when all the samples are used for training.
-
-Right: SVM classifier with RBF kernel.
-
-- The training score remains high regardless of the size of the training set.
-- On the other hand, the test score increases with the size of the training dataset.
-- Indeed, it increases up to a point where it reaches a plateau.
-
-::::
 
 ## Over-fitting and under-fitting
 
@@ -276,14 +240,24 @@ For regression, interpret “wiggliness” as capacity. Under-fit curves are too
 
 ## Generalization
 
+::: {.columns}
+::: {.column}
 - **Generalization**:
   - how well a model fits data it has **not seen during training**
-- Bias vs Variance (sources of error):
+- [Bias vs Variance (sources of error)](https://en.wikipedia.org/wiki/Bias%E2%80%93variance_tradeoff):
   - **Bias**: error from being too simple
     - corresponds to **under-fitting**
   - **Variance**: error from being too sensitive to training data
     - corresponds to **over-fitting**
 - A good model strikes a balance between both
+
+:::
+::: {.column}
+![](../assets/bias-variance_tradeoff.png){fig-align="center" .r-stretch}
+:::
+:::
+<!-- end columns -->
+
 
 :::: {.notes}
 Give a one-sentence operational definition: generalization is performance on unseen data. Then map failures to bias (systematic under-explanation) and variance (sensitive over-adaptation).
@@ -377,20 +351,42 @@ Delivery angle: start with the default `k`-fold because it balances computation 
 
 ---
 
-## Time-series cross-validation
+## Model scalability: can the model learn from more data?
 
-- In time-series, order matters
-- Use strategies that preserve order:
-  - [`TimeSeriesSplit`](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html)
-- Often after model selection:
-  - train on the full dataset (including the test period)
-  - but do not perform further test-based decisions after that
+- **Learning curves** show how performance changes as training size increases
+- Typical intuition:
+  - train score vs test score shape can reveal under-fitting, good-fit, or over-fitting
+- A **test-score plateau** can indicate:
+  - more data might not improve generalization anymore
 
 :::: {.notes}
-Delivery cue: the dataset is chronological, so “randomly shuffling” folds can leak future information. `TimeSeriesSplit` preserves order, and any final retraining on more data is for better estimates, not for re-tuning on the test period.
+Reading learning curves: pay attention to whether the *gap* between train and test shrinks (variance reduction via more data) or whether both curves improve slowly (bias/under-fitting). When the test curve plateaus, new data often becomes diminishing returns.
 ::::
 
 ---
+
+## Learning Curve
+
+**Learning curves** show the effect of adding more training samples.
+
+![Figure: Learning Curve](https://scikit-learn.org/stable/_images/sphx_glr_plot_learning_curve_001.png)
+
+Press `S` to open speaker notes.
+
+:::: {.notes}
+Left: naive Bayes classifier. Its shape can be found in more complex datasets very often:
+
+- the training score is very high when using few samples for training and decreases when increasing the number of samples
+- whereas the test score is very low at the beginning and then increases when adding samples.
+- the training and test scores become more realistic when all the samples are used for training.
+
+Right: SVM classifier with RBF kernel.
+
+- The training score remains high regardless of the size of the training set.
+- On the other hand, the test score increases with the size of the training dataset.
+- Indeed, it increases up to a point where it reaches a plateau.
+
+::::
 
 ## Summary: What to remember
 
